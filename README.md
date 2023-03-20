@@ -23,7 +23,9 @@ npx tailwindcss init
 
 更改以下文件
 react_recoil/tsconfig.json
+postcss.config.cjs
 react_recoil/vite.config.ts
+react_recoil/tailwind.config.cjs   content
 index.html
 src/   all
 ```
