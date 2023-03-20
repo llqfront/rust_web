@@ -49,12 +49,3 @@ react_recoil/vite.config.ts
 index.html
 src/*
 ```
-
-
-
-#### ps
-
-```html
-git update-index --assume-unchanged "vite.config.ts"
-git update-index --no-assume-unchanged "vite.config.ts"
-```
