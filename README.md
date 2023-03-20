@@ -2,14 +2,14 @@
 rust axum react recoil
 
 
-#### rust axum
+## rust axum
 
 
 
 
 
 
-#### react vite recoil router6
+## react vite recoil router6
 
 ##### node
 ```cmd
@@ -48,4 +48,13 @@ react_recoil/vite.config.ts
 ```html
 index.html
 src/*
+```
+
+
+
+#### ps
+
+```html
+git update-index --assume-unchanged "vite.config.ts"
+git update-index --no-assume-unchanged "vite.config.ts"
 ```

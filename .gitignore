@@ -95,3 +95,4 @@ dist-ssr
 *.sln
 *.sw?
 vite.config.ts
+rd.md
