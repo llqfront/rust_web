@@ -1,11 +1,11 @@
 use axum::{
-    // middleware::from_extractor,
+    middleware::from_extractor,
     routing::MethodRouter,
     Router
 };
 // api
 use super::auth;
-
+use middleware::auth::Claims;
 //构建路由公共方法
 pub fn handle_router(path: &str, method_router: MethodRouter) -> Router {
     let _path = format!("/api{}", path); // 统一api 路径
@@ -21,7 +21,8 @@ pub fn routers() -> Router {
 //需要权限认证的路由
 fn auth_init_router() -> Router {
     let app = Router::new()
-        .merge(auth::get_user_list());
+        .merge(auth::get_user_list())
+        .layer(from_extractor::<Claims>());
     return app;
 }
 

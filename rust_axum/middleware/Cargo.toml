@@ -1,5 +1,5 @@
 [package]
-name = "routers"
+name = "middleware"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,7 +7,12 @@ edition = "2021"
 
 [dependencies]
 axum = { workspace = true }
+jsonwebtoken = { workspace = true }
+sqlx = { workspace = true }
+once_cell = { workspace = true }
+serde_json = { workspace = true }
+serde = { workspace = true }
 
 
-middleware = { path = "../middleware" }
+
 common = { path = "../common" }

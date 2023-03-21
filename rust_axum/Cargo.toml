@@ -1,9 +1,10 @@
 [workspace]
 members = [
     "bin",
+    "db",
     "common",
     "routers",
-    "db",
+    "middleware",
     "configs",
 ]
 
@@ -20,3 +21,4 @@ serde_json = "1.0.93"
 serde = { version = "1.0.152", features = ["derive"] }
 log = "0.4.17"
 log4rs = "1.2.0"
+jsonwebtoken = "8.2.0"
