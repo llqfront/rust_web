@@ -14,3 +14,4 @@ sqlx = { workspace = true }
 
 db = { path = "../db" }
 controllers = { path = "../controllers" }
+common = { path = "../common" }

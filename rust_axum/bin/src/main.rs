@@ -6,12 +6,16 @@ use controllers::{
 use db::{
     mysql
 };
+use common::{
+    log
+};
 
 #[tokio::main]
 async fn main() -> Result<(), sqlx::Error> {
     //连接数据库
     mysql::init_db_pool().await?;
-    
+    // 日志系统
+    log::start_logs();
     let app = init::routers();
     let addr = SocketAddr::from_str("127.0.0.1:5050").unwrap();
     // axum::Server::bind(&"0.0.0.0:5000".parse().unwrap()) 与上相同
