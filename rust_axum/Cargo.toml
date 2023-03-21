@@ -2,7 +2,17 @@
 members = [
     "bin",
     "common",
+    "controllers",
 ]
 
 
 [workspace.dependencies]
+# axum = "0.6.7"
+axum = { version = "0.6.7", features = ["headers"]}
+tokio = { version = "1.25.0", features = ["full"] }
+sqlx = { version = "0.6.2", features = [ "mysql", "runtime-tokio-rustls" ] }  # mysql8
+# sqlx = { version = "0.6.2", features = [ "mysql", "runtime-tokio-native-tls" ] } 5.7
+dotenv = "0.15.0"
+
+serde_json = "1.0.93"
+serde = { version = "1.0.152", features = ["derive"] }
