@@ -1,5 +1,5 @@
 [package]
-name = "bin"
+name = "db"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,9 +8,6 @@ edition = "2021"
 [dependencies]
 axum = { workspace = true }
 tokio = { workspace = true }
+dotenv = { workspace = true }
 sqlx = { workspace = true }
-
-
-
-db = { path = "../db" }
-controllers = { path = "../controllers" }
+once_cell = { workspace = true }
