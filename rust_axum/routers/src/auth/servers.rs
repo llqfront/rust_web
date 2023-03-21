@@ -6,7 +6,6 @@ use super::dto::{
 use db::{
     mysql
 };
-
 pub async fn create(user: AuthPayload) -> Result<u64, Error> {
     let sql = "insert into user(email, username, cred, password) values (?, ?, ?, ?)";
     let pool = mysql::get_pool().unwrap();
@@ -15,6 +14,7 @@ pub async fn create(user: AuthPayload) -> Result<u64, Error> {
         .bind(&user.username)
         .bind(&user.cred)
         .bind(&user.password)
+        // .bind(password::hash(&user.password))
         .execute(pool)
         .await?
         .rows_affected();

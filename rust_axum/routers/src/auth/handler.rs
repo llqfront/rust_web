@@ -22,11 +22,14 @@ use super::{
         LianxXiPayload
     }
 };
-use common::response::RespVO;
+use common::{
+    response::{
+        RespVO
+    }
+};
 use middleware::{
     jwt::KEYS,
 };
-
 const COOKIE_NAME: &'static str = "MERGE_TOKEN";
 
 //注册
