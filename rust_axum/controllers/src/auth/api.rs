@@ -28,16 +28,16 @@ use common::response::RespVO;
 //     // update_user as update_user_info,
 // };
 async fn all_query(Query(args): Query<HashMap<String, String>>) -> String {
-    format!("register{:?}", args)
+    format!("regi3ster{:?}", args)
 }
 
 pub async fn update_user() -> impl IntoResponse {
-     let msg = "更新成功！".to_string();
+     let msg = "更新3成功！".to_string();
      Json(RespVO::<String>::from_result(&msg))
 }
 
 pub async fn get_user_lists() -> impl IntoResponse {
-     let msg = "测试更新成功！".to_string();
+     let msg = "测试更3新成功！".to_string();
      Json(RespVO::<String>::from_result(&msg))
 }
 

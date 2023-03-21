@@ -66,10 +66,6 @@ testem.log
 config/*.js
 /e2e/*.js
 /e2e/*.map
-# System Files
-.DS_Store
-Thumbs.db
-
 
 # Logs
 logs
