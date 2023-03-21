@@ -2,7 +2,7 @@
 members = [
     "bin",
     "common",
-    "controllers",
+    "routers",
     "db",
     "configs",
 ]
