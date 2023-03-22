@@ -8,7 +8,10 @@ use super::auth;
 use middleware::auth::Claims;
 //构建路由公共方法
 pub fn handle_router(path: &str, method_router: MethodRouter) -> Router {
-    let _path = format!("/api{}", path); // 统一api 路径
+    // let _path = format!("/api{}", path); // 统一api 路径
+    // let mut _path = String::from("/api");
+    let mut _path = "/api".to_string();
+    _path.push_str(path);
     Router::new().route(&_path, method_router)
 }
 
