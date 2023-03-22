@@ -11,3 +11,8 @@ serde_json = { workspace = true }
 serde = { workspace = true }
 log = { workspace = true }
 log4rs = { workspace = true }
+
+password-hash = { workspace = true }
+# argon2 = { workspace = true }
+# pbkdf2 = { workspace = true }
+# scrypt = { workspace = true }
