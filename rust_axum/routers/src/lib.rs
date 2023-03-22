@@ -1,3 +1,2 @@
-
-pub mod init;
 pub mod auth;
+pub mod init;

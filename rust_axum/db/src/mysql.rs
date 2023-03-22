@@ -1,14 +1,7 @@
-use std::{
-    env,
-    process
-};
-use sqlx::{
-    mysql::MySqlPoolOptions,
-    Error,
-    MySqlPool
-};
 use dotenv::dotenv;
 use once_cell::sync::OnceCell;
+use sqlx::{mysql::MySqlPoolOptions, Error, MySqlPool};
+use std::{env, process};
 
 static MYSQL_POOL: OnceCell<MySqlPool> = OnceCell::new();
 

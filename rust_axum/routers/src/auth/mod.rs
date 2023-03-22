@@ -1,9 +1,5 @@
 mod api;
-mod handler;
 mod dto;
+mod handler;
 mod servers;
-pub use api::{
-    register,
-    login,
-    get_user_list
-};
+pub use api::{get_user_list, login, register};

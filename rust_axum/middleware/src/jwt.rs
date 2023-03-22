@@ -1,7 +1,6 @@
-use std::env;
+use jsonwebtoken::{DecodingKey, EncodingKey};
 use once_cell::sync::Lazy;
-use jsonwebtoken::{ DecodingKey, EncodingKey };
-
+use std::env;
 
 ///环境变量密钥，
 pub static KEYS: Lazy<Keys> = Lazy::new(|| {

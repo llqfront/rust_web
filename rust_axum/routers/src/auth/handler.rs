@@ -1,35 +1,15 @@
-use axum::{
-    http::{
-        header::{
-            SET_COOKIE,
-            HeaderMap
-        }
-    },
-    response::{
-        IntoResponse,
-    },
-    Json
-};
-use jsonwebtoken::{encode, Header};
 use super::{
+    dto::{AuthPayToken, AuthPayload, AuthToken, LianxXiPayload, LoginPayload, LoginResponse},
     servers,
-    dto::{
-        AuthPayload,
-        AuthToken,
-        LoginPayload,
-        LoginResponse,
-        AuthPayToken,
-        LianxXiPayload
-    }
 };
-use common::{
-    response::{
-        RespVO
-    }
+use axum::{
+    http::header::{HeaderMap, SET_COOKIE},
+    response::IntoResponse,
+    Json,
 };
-use middleware::{
-    jwt::KEYS,
-};
+use common::response::RespVO;
+use jsonwebtoken::{encode, Header};
+use middleware::jwt::KEYS;
 const COOKIE_NAME: &'static str = "MERGE_TOKEN";
 
 //注册
@@ -48,7 +28,7 @@ pub async fn authorize(Json(payload): Json<AuthPayload>) -> impl IntoResponse {
             if payload.username == res.username {
                 return Json(RespVO::<AuthToken>::from_result_tip("用户名已注册！"));
             };
-        },
+        }
         Err(_err) => {
             // 查询用户不存在
         }
@@ -84,23 +64,23 @@ fn init_token(payload: AuthPayload) -> String {
     token
 }
 //登录
-pub async fn login(Json(body): Json<LoginPayload>) -> (HeaderMap, Json<RespVO::<LoginResponse>>) {
+pub async fn login(Json(body): Json<LoginPayload>) -> (HeaderMap, Json<RespVO<LoginResponse>>) {
     let mut headers = HeaderMap::new();
     let result = servers::show(&body.username).await;
     match result {
         Ok(res) => {
             if body.password != res.password {
-                return (headers, Json(RespVO::<LoginResponse>::from_error("密码错误！")));
+                return (
+                    headers,
+                    Json(RespVO::<LoginResponse>::from_error("密码错误！")),
+                );
             }
             let token = init_token(res.clone());
             // 3、把token写入cookie
             // response.addHeader("Set-Cookie", "uid=112; Path=/; Secure; HttpOnly");
             let cookie = format!("{}={};HTTPOnly", COOKIE_NAME, &token);
-            headers.insert(
-                SET_COOKIE,
-                cookie.as_str().parse().unwrap(),
-            ); // 设置Cookie
-            // 4、token 返回给用户
+            headers.insert(SET_COOKIE, cookie.as_str().parse().unwrap()); // 设置Cookie
+                                                                          // 4、token 返回给用户
             let arg = AuthToken::new(token);
             let params = LoginResponse {
                 username: res.username,
@@ -109,19 +89,20 @@ pub async fn login(Json(body): Json<LoginPayload>) -> (HeaderMap, Json<RespVO::<
             };
             (headers, Json(RespVO::<LoginResponse>::from_result(&params)))
         }
-        Err(_err) => {
-            (headers, Json(RespVO::<LoginResponse>::from_error("用户名无效！")))
-        }
+        Err(_err) => (
+            headers,
+            Json(RespVO::<LoginResponse>::from_error("用户名无效！")),
+        ),
     }
 }
 //查询用户信息列表
 pub async fn get_user_list() -> impl IntoResponse {
-   let result = servers::list().await;
-   match result {
-       Ok(res) => Json(RespVO::<Vec<LianxXiPayload>>::from_result(&res)),
-       Err(err) => {
-           let info = err.to_string();
-           Json(RespVO::<Vec<LianxXiPayload>>::from_error(&info))
-       }
-   }
+    let result = servers::list().await;
+    match result {
+        Ok(res) => Json(RespVO::<Vec<LianxXiPayload>>::from_result(&res)),
+        Err(err) => {
+            let info = err.to_string();
+            Json(RespVO::<Vec<LianxXiPayload>>::from_error(&info))
+        }
+    }
 }

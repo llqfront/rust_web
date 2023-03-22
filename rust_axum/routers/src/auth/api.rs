@@ -1,18 +1,13 @@
-use axum::{
-    routing::{
-        get,
-        post
-    },
-    Router
-};
-use crate::init::{
-    handle_router
-};
 use super::handler::{
     authorize,
     get_user_list as get_user_lists,
     login as user_login,
     // update_user as update_user_info,
+};
+use crate::init::handle_router;
+use axum::{
+    routing::{get, post},
+    Router,
 };
 
 //注册

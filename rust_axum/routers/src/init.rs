@@ -1,8 +1,4 @@
-use axum::{
-    middleware::from_extractor,
-    routing::MethodRouter,
-    Router
-};
+use axum::{middleware::from_extractor, routing::MethodRouter, Router};
 // api
 use super::auth;
 use middleware::auth::Claims;
@@ -20,7 +16,6 @@ pub fn routers() -> Router {
     auth_init_router().merge(init_router())
 }
 
-
 //需要权限认证的路由
 fn auth_init_router() -> Router {
     let app = Router::new()
@@ -32,7 +27,7 @@ fn auth_init_router() -> Router {
 //不需要权限认证的路由
 fn init_router() -> Router {
     let app = Router::new()
-    .merge(auth::login()) //登录
-    .merge(auth::register()); //注册
+        .merge(auth::login()) //登录
+        .merge(auth::register()); //注册
     return app;
 }

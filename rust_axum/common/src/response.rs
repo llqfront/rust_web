@@ -1,12 +1,5 @@
-use axum::{
-    http::StatusCode,
-    // response::Response
-};
-use serde::{
-    de::DeserializeOwned,
-    Deserialize,
-    Serialize
-};
+use axum::http::StatusCode;
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
 //常量
 pub const CODE_SUCCESS: StatusCode = StatusCode::OK;
 pub const CODE_FAIL: StatusCode = StatusCode::BAD_REQUEST;

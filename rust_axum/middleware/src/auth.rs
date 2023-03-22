@@ -1,21 +1,11 @@
+use super::jwt::KEYS;
 use axum::{
     async_trait,
-    extract::{
-        FromRequestParts,
-    },
-    http::{
-        StatusCode,
-        request::Parts
-    },
-    Json
+    extract::FromRequestParts,
+    http::{request::Parts, StatusCode},
+    Json,
 };
-use super::jwt::KEYS;
-use common::{
-    response::RespVO,
-    cookie::{
-        get_cookie
-    }
-};
+use common::{cookie::get_cookie, response::RespVO};
 
 use jsonwebtoken::{decode, Validation};
 use serde::{Deserialize, Serialize};
@@ -28,7 +18,6 @@ pub struct Claims {
     pub password: String,
     pub exp: Option<i32>,
 }
-
 
 #[async_trait]
 impl<S> FromRequestParts<S> for Claims
@@ -59,27 +48,26 @@ where
 
         // Ok(token_data.claims)
         // 方式二，自动获取token
-        let token = get_cookie(&parts.headers,"MERGE_TOKEN");
+        let token = get_cookie(&parts.headers, "MERGE_TOKEN");
         // println!("{:#?}",token);
         // println!("{:#?}",bearer.token());
         match token {
             Some(token) => {
-                let token_data = decode::<Claims>(&token.to_string(), &KEYS.decoding, &Validation::default())
-                    .map_err(|_| {
-                    Json(RespVO::<String>::from_error_info(
-                        StatusCode::UNAUTHORIZED,
-                        "token无效",
-                    ))
-                })?;
+                let token_data =
+                    decode::<Claims>(&token.to_string(), &KEYS.decoding, &Validation::default())
+                        .map_err(|_| {
+                            Json(RespVO::<String>::from_error_info(
+                                StatusCode::UNAUTHORIZED,
+                                "token无效",
+                            ))
+                        })?;
                 // println!("{:#?}",token_data);
                 Ok(token_data.claims)
             }
-            _ => Err(
-                Json(RespVO::<String>::from_error_info(
-                    StatusCode::UNAUTHORIZED,
-                    "未认证",
-                ))
-            ),
+            _ => Err(Json(RespVO::<String>::from_error_info(
+                StatusCode::UNAUTHORIZED,
+                "未认证",
+            ))),
         }
     }
 }

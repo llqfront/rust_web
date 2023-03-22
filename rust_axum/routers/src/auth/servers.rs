@@ -1,11 +1,6 @@
+use super::dto::{AuthPayload, LianxXiPayload};
+use db::mysql;
 use sqlx::{self, Error};
-use super::dto::{
-    AuthPayload,
-    LianxXiPayload
-};
-use db::{
-    mysql
-};
 pub async fn create(user: AuthPayload) -> Result<u64, Error> {
     let sql = "insert into user(email, username, cred, password) values (?, ?, ?, ?)";
     let pool = mysql::get_pool().unwrap();
@@ -38,8 +33,7 @@ pub async fn create(user: AuthPayload) -> Result<u64, Error> {
  */
 pub async fn list() -> Result<Vec<LianxXiPayload>, Error> {
     let pool = mysql::get_pool().unwrap();
-    let sql =
-        "select name, age, create_date, update_date from lianxi_user";
+    let sql = "select name, age, create_date, update_date from lianxi_user";
     let list = sqlx::query_as::<_, LianxXiPayload>(sql)
         .fetch_all(pool)
         .await?;
