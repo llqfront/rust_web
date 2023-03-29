@@ -1,0 +1,279 @@
+body {
+  background: #f0f2f5;
+}
+
+.header_other {
+  width: 800px;
+  margin: 0 auto;
+  height: 140px;
+  background: #333;
+}
+.error_page {
+  text-align: center;
+  padding-top: 100px;
+  .iconfont {
+    font-size: 248px;
+  }
+}
+.header {
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: #fff;
+  transition: width 2s;
+  -moz-transition: width 2s; /* Firefox 4 */
+  -webkit-transition: width 2s; /* Safari 和 Chrome */
+  -o-transition: width 2s; /* Opera */
+  box-shadow: 0 2px 10px 0 rgb(26 119 255 / 10%);
+}
+.main {
+  margin-top: 70px;
+  display: flex;
+  .main_left {
+    width: 240px;
+    background-color: #f0f2f5;
+    height: calc(100vh - 70px);
+    display: flex;
+    .left_menu {
+      width: 110px;
+      background-color: #001529;
+      height: 100%;
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
+      .hd {
+        height: 8px;
+      }
+      .ft {
+        height: 36px;
+      }
+      .bd {
+        overflow-y: auto;
+        height: 100%;
+        flex: 1;
+        width: 140px;
+        padding-top: 8px;
+        ::-webkit-scrollbar {
+          /*滚动条整体样式*/
+          // width: 4px; /*高宽分别对应横竖滚动条的尺寸*/
+          // height: 1px;
+          display: none;
+        }
+        ::-webkit-scrollbar-thumb {
+          /*滚动条里面小方块*/
+          // border-radius: 10px;
+          // box-shadow: inset 0 0 5px rgba(97, 184, 179, 0.1);
+          // background: #78b4b4;
+          display: none;
+        }
+        ::-webkit-scrollbar-track {
+          /*滚动条里面轨道*/
+          // box-shadow: inset 0 0 5px rgba(87, 175, 187, 0.1);
+          // border-radius: 10px;
+          // background: #ededed;
+          display: none;
+        }
+        .menu_line {
+          width: 78px;
+          height: 1px;
+          margin: 10px 16px;
+          background: #ffffff1a;
+        }
+        ul {
+          width: 140px;
+          li {
+            height: 46px;
+            width: 110px;
+            .title {
+              display: block;
+              padding-left: 16px;
+              height: 46px;
+              display: flex;
+              color:#fff;
+              text-decoration: none;
+              line-height: 46px;
+              font-size: 14px;
+              i {
+                font-size: 16px;
+                margin-right: 5px;
+                vertical-align: middle;
+                margin-top: 1px;
+              }
+              &:hover {
+                background: #3c4653;
+              }
+              &.active {
+                background: #fff;
+                color: #3c4653;
+                border-radius: 6px 0 0 6px;
+                margin-left: 8px;
+                padding-left: 8px;
+                position: relative;
+                i {
+                  color:#3c4653;
+                }
+                &::before{
+                  content: "";
+                  position: absolute;
+                  right: 0;
+                  height: 57px;
+                  width: 8px;
+                  top: -5px;
+                  z-index: 10;
+                  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAByBAMAAACo4UwDAAAAHlBMVEUAAAD///////////////////////////////////8kfJuVAAAACXRSTlMA5AyxlGRJJpJQnjwZAAAAVklEQVQ4y2OAAiYYgx3GYIMxWGAMRhgjEqZJEspgnglldEIZyjMhDFZJMEM9BUjPZJgJAqOMUcYoAx8DnmUQmQierRAZDT3rMUmiZ08GRowszIaRzZkA1yW9FMfU//YAAAAASUVORK5CYII=) 50%;
+                  background-size: cover;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .right_menu {
+      width: 130px;
+      height: 100%;
+      background: #fff;
+      overflow: hidden;
+      padding-bottom: 36px;
+      box-sizing: border-box;
+      height: calc(100vh - 70px);
+      .dl_list {
+        padding: 8px 0 50px 8px;
+        height: 100%;
+        width: 150px;
+        box-sizing: border-box;
+        overflow-y: auto;
+        dl {
+          dt {
+            height: 35px;
+            width: 122px;
+            box-sizing: border-box;
+            line-height: 35px;
+            margin: 2px 0 0 0;
+            font-size: 14px;
+            padding-left: 12px;
+            color: #1b2028;
+            display: flex;
+            flex-direction: row;
+            cursor: pointer;
+            justify-content: space-between;
+            i {
+              font-size: 16px;
+              margin-right: 8px;
+            }
+            a {
+              text-decoration: none;
+            }
+            // .cur {
+             
+            // }
+            a:hover {
+               color:#1a77ff;
+            }
+          }
+          dd {
+            height: 35px;
+            line-height: 35px;
+            width: 98px;
+            font-size: 12px;
+            margin: 0 0 4px 8px;
+            padding-left: 12px;
+            a {
+             color: #1b2028;
+             text-decoration: none;
+            }
+            a:hover {
+              color:#1a77ff;
+            }
+            &.cur {
+              background: #e6f4ff;
+              border-radius: 3px;
+              a {
+                color:#1a77ff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .main_right{
+    display: block;
+    margin-left: 15px;
+    background-color: #fff;
+    height: calc(100vh - 70px);
+    flex-grow: 1;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+}
+.popbox {
+  padding: 8px 0 8px 8px;
+  background: #3c4653;
+  position: fixed;
+  z-index: 999;
+  display: none;
+  border-radius: 5px;
+  .pop_list {
+    height: 380px;
+    overflow-y: auto;
+    width: 140px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    dl {
+      dt {
+        height: 35px;
+        width: 122px;
+        box-sizing: border-box;
+        line-height: 35px;
+        margin: 2px 0 0 0;
+        font-size: 14px;
+        padding-left: 12px;
+        color: #fff;
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        justify-content: space-between;
+        i {
+          font-size: 16px;
+          margin-right: 8px;
+        }
+        a {
+          color: #eee;
+          text-decoration: none;
+        }
+        .cur {
+          
+        }
+        a:hover {
+          color:#fff;
+        }
+      }
+      dd {
+        height: 35px;
+        line-height: 35px;
+        width: 98px;
+        font-size: 12px;
+        margin: 0 0 4px 8px;
+        padding-left: 12px;
+        a {
+          color: #eee;
+          text-decoration: none;
+        }
+        // a:hover {
+        //   color:#1a77ff;
+        // }
+        &.cur, &:hover  {
+          background: #4b5663;
+          border-radius: 3px;
+          a {
+            color:#fff;
+          }
+        }
+      }
+    }
+  }
+}

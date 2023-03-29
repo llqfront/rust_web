@@ -12,6 +12,16 @@ const Ctx = lazy(() => import('@/views/Ctx/'));
 const EpCtx = lazy(() => import('@/views/EpCtx/'));
 const NotFound = lazy(() => import('@/views/NotFound'));
 
+const Dashboard = lazy(() => import('@/views/Dashboard'))
+const Member = lazy(() => import('@/views/Member'))
+const Setting = lazy(() => import('@/views/Setting'))
+const ProdService = lazy(() => import('@/views/ProdService'))
+const Operations = lazy(() => import('@/views/Operations'))
+const Login = lazy(() => import('@/views/Account/Login'))
+const Register = lazy(() => import('@/views/Account/Register'))
+const ShopPv = lazy(() => import('@/views/Dashboard/ShopPv'))
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +31,43 @@ const router = createBrowserRouter([
         path: "",
         index: true,
         element: <Home />,
+      },
+      {
+        path: "service",
+        element: <Dashboard />,
+        children: [
+          {
+            path: "dashboard",
+            element: <Dashboard />,
+            children: [
+              {
+                path: "shop-pv",
+                index: true,
+                element: <ShopPv />,
+              },
+            ]
+          },
+          {
+            path: "member",
+            index: true,
+            element: <Member />,
+          },
+          {
+            path: "setting",
+            index: true,
+            element: <Setting />,
+          },
+          {
+            path: "prodService",
+            index: true,
+            element: <ProdService />,
+          },
+          {
+            path: "operations",
+            index: true,
+            element: <Operations />,
+          },
+        ]
       },
       {
         path: "about",
