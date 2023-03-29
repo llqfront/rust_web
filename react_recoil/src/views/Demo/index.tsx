@@ -19,4 +19,5 @@ const View: React.FC<Props> = (props) => {
       </React.Fragment>
     )
 }
+
 export default memo(View);
